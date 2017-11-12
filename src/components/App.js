@@ -1,7 +1,7 @@
 import React from 'react';
 import TweetWall from './TweetWall';
 
-import { getTweets }from '../lib/mockAPI';
+import { getTweets } from '../lib/mockAPI';
 
 class App extends React.Component {
 
@@ -11,11 +11,25 @@ class App extends React.Component {
     this.state = {
       latestTweets: []
     };
+
+
   }
 
   // TODO: componentWillMount()
   // TODO: componentDidMount()
   // TODO: componentWillUnmount()
+
+  componentWillMount = () => {
+    this.fetchTweets()
+  }
+
+  componentDidMount() {
+    this.startInterval()
+  }
+
+  componentWillUnmount() {
+    this.cleanUpInterval()
+  }
 
   startInterval = () => {
     this.interval = setInterval(this.fetchTweets, 2000);
